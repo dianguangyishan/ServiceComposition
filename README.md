@@ -1,0 +1,2 @@
+# teacher_info_management_sys
+这里是我们组教师信息管理系统的源码基地哦！
