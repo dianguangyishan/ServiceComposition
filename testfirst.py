@@ -41,12 +41,14 @@ for i in dic1:
     if i not in dic2:
         dic2.append(i)
 del dic1
+del temp
+del line
 PROCESS.close()
 
 REQ=open("REQ.TXT")
 REQ.close()
 
-info=[]#0 represent quality and 1 represent price
+info=[[]]#0 represent quality and 1 represent price
 for e in dic2:
 	info.append(dic[e])
 
@@ -56,10 +58,12 @@ for i in range(1,len(dic2)+1):
     f.append({})
     for j in f[i-1]:
         for k in range(500):
-            if ( j+info[i-1][k][1] not in f[i]):
-                f[i][j+info[i-1][k][1]]=f[i-1][j]*info[i-1][k][0]
-            elif(f[i-1][j]*info[i-1][k][0]>f[i][j+info[i-1][k][1]]):
-                f[i][j+info[i-1][k][1]]=f[i-1][j]*info[i-1][k][0]
+            if  j + info[i][k][1] not in f[i]:
+                f[i][j + info[i][k][1]]=f[i-1][j] * info[i][k][0]
+            else:
+                tmp=f[i-1][j] * info[i][k][0]
+                if tmp > f[i][j + info[i][k][1]]:
+                    f[i][j + info[i][k][1]]=tmp
             
                 
                 
