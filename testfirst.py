@@ -67,7 +67,9 @@ for i in range(1,len(dic2)+1):
     f.append({})
     for j in f[i-1]:
         for k in range(len(info[i])):
-            if  j + info[i][k][1] not in f[i]:
+            if j + info[i][k][1] > pd *100:
+                continue
+            elif j + info[i][k][1] not in f[i]:
                 f[i][j + info[i][k][1]]=f[i-1][j] * info[i][k][0]
             else:
                 tmp=f[i-1][j] * info[i][k][0]
