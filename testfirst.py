@@ -9,7 +9,7 @@ SERVICE=open("SERVICE.TXT")
 dic=dict()
 alpha=[chr(e) for e in range(65,91)]
 #read data from file
-for j in range(13):
+for j in range(14):
     a=[]
     for i in range(500):
         line=SERVICE.readline().strip().split(' ')
@@ -25,6 +25,9 @@ SERVICE.close()
 
 REQ=open("REQ.TXT")
 line=REQ.readline().strip().split(',')
+line=REQ.readline().strip().split(',')##
+line=REQ.readline().strip().split(',')###
+line=REQ.readline().strip().split(',')####
 temp=line[0].split('(')
 qd=Decimal(temp[1])
 temp=line[1].split(')')
@@ -35,6 +38,9 @@ REQ.close()
 PROCESS=open("PROCESS.TXT")
 dic1=list()
 line=PROCESS.readline().strip().split(',')
+line=PROCESS.readline().strip().split(',')#
+line=PROCESS.readline().strip().split(',')##
+line=PROCESS.readline().strip().split(',')###
 for e in line:
     temp=e.split('(')
     for k in temp:
@@ -58,7 +64,7 @@ PROCESS.close()
 
 info=[[]]#0 represent quality and 1 represent price
 for e in dic2:
-	info.append(dic[e])
+    info.append(dic[e])
 f=[{Decimal('0'):Decimal('1')}]
 asisit=[{}]
 #algorithm for manipulating
@@ -94,7 +100,7 @@ for k in f[i]:
     if tmp==qmax:
         head=k
         while i>0:
-            print dic2[i-1]+'-'+str(asisit[i][head][1]),
+            print dic2[i-1]+'-'+str(asisit[i][head][1]+1),
             head=asisit[i][head][0]
             i=i-1
         print '\r'
