@@ -60,9 +60,11 @@ info=[[]]#0 represent quality and 1 represent price
 for e in dic2:
 	info.append(dic[e])
 f=[{Decimal('0'):Decimal('1')}]
+asisit=[{}]
 #algorithm for manipulating
 for i in range(1,len(dic2)+1):
     f.append({})
+    asisit.append({})
     for j in f[i-1]:
         for k in range(len(info[i])):
             if j + info[i][k][1] > pd:
@@ -73,13 +75,29 @@ for i in range(1,len(dic2)+1):
                 continue
             elif j + info[i][k][1] not in f[i]:
                 f[i][j + info[i][k][1]]=tmp
+                asisit[i][j + info[i][k][1]]=[0,0]
+                asisit[i][j + info[i][k][1]][0]=j
+                asisit[i][j + info[i][k][1]][1]=k
             elif tmp > f[i][j + info[i][k][1]]:
                     f[i][j + info[i][k][1]]=tmp
-            
-                
-                
-	
-	
-	
-	
-	
+                    asisit[i][j + info[i][k][1]][0]=j
+                    asisit[i][j + info[i][k][1]][1]=k
+qmax=0
+select=0
+for e in f[i]:
+    tmp=f[i][e] - e/100
+    if tmp > qmax:
+        qmax=tmp
+        select=e
+for k in f[i]:
+    tmp=f[i][k] - k/100
+    if tmp==qmax:
+        head=k
+        while i>0:
+            print dic2[i-1]+'-'+str(asisit[i][head][1]),
+            head=asisit[i][head][0]
+            i=i-1
+        print '\r'
+        print qmax
+        print k
+        i=len(dic2)
